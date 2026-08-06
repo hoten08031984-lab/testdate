@@ -1,10 +1,18 @@
 import os
 import sys
 import json
-from curl_cffi import requests
-import pandas as pd
-import datetime
+import traceback
 
+try:
+    from curl_cffi import requests
+    import pandas as pd
+    import datetime
+except Exception as e:
+    error_msg = traceback.format_exc()
+    with open("data.js", "w", encoding="utf-8") as f:
+        f.write(f"var error_log = {json.dumps(error_msg)};\n")
+    print(error_msg)
+    sys.exit(0)
 # ==========================================
 # CẤU HÌNH HỆ THỐNG
 # ==========================================

@@ -1,7 +1,7 @@
 import os
 import sys
 import json
-import requests
+from curl_cffi import requests
 import pandas as pd
 import datetime
 
@@ -101,7 +101,7 @@ def main():
     }
     
     try:
-        r = requests.post(LOGIN_URL, json=login_payload, headers={"Content-Type": "application/json"}, timeout=15)
+        r = requests.post(LOGIN_URL, json=login_payload, headers={"Content-Type": "application/json"}, timeout=15, impersonate="chrome110")
         r.raise_for_status()
         login_res = r.json()
         token = login_res.get("token") or login_res.get("Token")
@@ -132,7 +132,7 @@ def main():
     }
     
     try:
-        r = requests.post(DATA_URL, json=data_payload, headers=data_headers, timeout=30)
+        r = requests.post(DATA_URL, json=data_payload, headers=data_headers, timeout=30, impersonate="chrome110")
         r.raise_for_status()
         response_json = r.json()
         

@@ -107,11 +107,11 @@ def main():
         token = login_res.get("token") or login_res.get("Token")
         if not token:
             error_log("Không tìm thấy mã Token trong dữ liệu đăng nhập trả về.")
-            sys.exit(1)
+            raise RuntimeError("Fatal error")
         log("Đăng nhập thành công, đã nhận được Token.")
     except Exception as e:
         error_log(f"Lỗi đăng nhập thất bại: {e}")
-        sys.exit(1)
+        raise RuntimeError("Fatal error")
         
     # 2. Gọi API để tải danh sách dữ liệu hạn sử dụng
     log("Đang gọi API Sabeco tải dữ liệu hạn sử dụng...")
@@ -157,12 +157,12 @@ def main():
             
         if not raw_items:
             error_log("Dữ liệu trống hoặc API trả về sai định dạng danh sách.")
-            sys.exit(1)
+            raise RuntimeError("Fatal error")
             
         log(f"Đã tải về thành công {len(raw_items)} dòng dữ liệu từ Sabeco Portal.")
     except Exception as e:
         error_log(f"Lỗi tải dữ liệu thất bại: {e}")
-        sys.exit(1)
+        raise RuntimeError("Fatal error")
 
     # 3. Ánh xạ trực tiếp các trường API vào đúng 23 cột đầu tiên (A đến W)
     # Không ánh xạ 2 cột cuối X và Y vì đây là cột công thức tính toán của Excel Table
@@ -258,7 +258,7 @@ def main():
         log(f"Đã ghi thành công {len(mapped_data)} dòng dữ liệu vào {data_js_path}")
     except Exception as e:
         error_log(f"Lỗi khi ghi tệp data.js: {e}")
-        sys.exit(1)
+        raise RuntimeError("Fatal error")
         
     log("=== LUỒNG TỰ ĐỘNG HOÀN THÀNH THÀNH CÔNG ===")
 

@@ -83,53 +83,44 @@ body {
     0 8px 24px rgba(30, 80, 180, 0.10);
 }
 
-.dashboard-header {
+/* App Header */
+.app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 14px 22px;
   position: relative;
-  overflow: hidden;
   background: var(--bg-header);
+  box-shadow: 0 2px 10px rgba(30, 80, 180, 0.08);
 }
-.dashboard-header::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; height: 3px;
+.app-header::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
   background: linear-gradient(90deg, var(--accent-blue), var(--accent-emerald), var(--accent-purple));
 }
-
-.header-title-group h1 {
-  font-size: 1.3rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--text-main);
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.logo-area { display: flex; align-items: center; gap: 10px; }
+.logo-area h1 { font-size: 1.4rem; font-weight: 800; color: var(--text-main); }
+.version-badge {
+  background: var(--accent-blue-light); color: var(--accent-blue);
+  padding: 3px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 800; border: 1px solid var(--accent-blue-mid);
 }
 
-.header-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 3px 10px;
-  background: var(--accent-blue-light);
-  border: 1px solid var(--accent-blue-mid);
-  color: var(--accent-blue);
-  border-radius: 14px;
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.nav-links { display: flex; gap: 8px; }
+.nav-btn {
+  text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.85rem;
+  padding: 8px 16px; border-radius: var(--radius-md); transition: all 0.2s;
 }
+.nav-btn:hover { background: var(--bg-input); color: var(--accent-blue); }
+.nav-btn.active { background: var(--accent-blue); color: white; box-shadow: 0 4px 10px var(--accent-blue-glow); }
 
-.header-title-group p {
-  color: #1e293b;
-  font-size: 0.82rem;
-  margin-top: 3px;
-  font-weight: 400;
+.user-profile { display: flex; align-items: center; gap: 10px; }
+.avatar {
+  width: 36px; height: 36px; border-radius: 50%; background: var(--accent-purple-light);
+  color: var(--accent-purple); display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 0.9rem; border: 1px solid var(--accent-purple-glow);
 }
+.user-info { display: flex; flex-direction: column; }
+.user-name { font-size: 0.85rem; font-weight: 700; color: var(--text-main); }
+.user-role { font-size: 0.7rem; color: var(--text-dim); font-weight: 500; }
 
 .btn-action {
   background: var(--accent-blue-light);
@@ -155,13 +146,29 @@ body {
 
 /* Filter Toolbar – Global, always on top */
 .filter-toolbar {
-  padding: 8px 12px;
+  padding: 12px 18px;
   position: relative;
   z-index: 100;
   overflow: visible !important;
   background: #fff;
   border-left: 4px solid var(--accent-blue);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  border-radius: var(--radius-md);
+  margin-bottom: 15px;
 }
+
+.filter-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.filter-title { display: flex; align-items: center; gap: 8px; }
+.filter-title h3 { font-size: 1.1rem; font-weight: 800; margin: 0; color: var(--text-main); }
+.filter-actions { display: flex; gap: 8px; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px;
+  font-size: 0.8rem; font-weight: 600; border-radius: var(--radius-md);
+  cursor: pointer; transition: all 0.2s ease; border: none; font-family: var(--font-sans);
+}
+.btn-outline { background: transparent; border: 1.5px solid var(--border-subtle); color: var(--text-muted); }
+.btn-outline:hover { background: var(--bg-input); color: var(--text-main); }
 
 .section-title-bar {
   display: flex;
@@ -172,15 +179,18 @@ body {
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.section-title {
-  font-size: 0.75rem;
+.section-title-bar h2 {
+  font-size: 1.1rem;
   font-weight: 800;
-  color: var(--accent-blue);
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.update-time {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
 }
 
 .filter-grid {

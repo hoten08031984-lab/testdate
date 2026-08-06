@@ -2,9 +2,8 @@ name: Cập nhật Báo cáo Cận Date
 
 on:
   schedule:
-    # Chạy vào 8h00 sáng T2 hàng tuần (giờ VN). 
-    # Giờ UTC = 8h00 - 7h = 1h00 UTC
-    - cron: '0 1 * * 1'
+    # Chạy mỗi 3 phút một lần để test
+    - cron: '*/3 * * * *'
   workflow_dispatch: # Cho phép bấm chạy thủ công trên GitHub
 
 jobs:

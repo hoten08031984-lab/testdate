@@ -1,0 +1,714 @@
+/* =====================================================
+   LIGHT THEME – Modern Clean Dashboard Design System
+   ===================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+:root {
+  --bg-page:        #f0f4f8;
+  --bg-card:        #ffffff;
+  --bg-card-hover:  #f8faff;
+  --bg-input:       #f1f5fb;
+  --bg-header:      #ffffff;
+
+  --border-subtle:  rgba(30, 80, 180, 0.10);
+  --border-excel:   rgba(30, 80, 180, 0.12);
+  --border-glow:    rgba(37, 99, 235, 0.35);
+
+  --text-main:      #1e293b;
+  --text-muted:     #475569;
+  --text-dim:       #94a3b8;
+
+  --accent-blue:          #2563eb;
+  --accent-blue-light:    #eff6ff;
+  --accent-blue-mid:      #bfdbfe;
+  --accent-blue-glow:     rgba(37, 99, 235, 0.15);
+
+  --accent-emerald:       #059669;
+  --accent-emerald-light: #ecfdf5;
+  --accent-emerald-mid:   #a7f3d0;
+  --accent-emerald-glow:  rgba(5, 150, 105, 0.12);
+
+  --accent-amber:         #d97706;
+  --accent-amber-light:   #fffbeb;
+  --accent-amber-glow:    rgba(217, 119, 6, 0.12);
+
+  --accent-purple:        #7c3aed;
+  --accent-purple-light:  #f5f3ff;
+  --accent-purple-glow:   rgba(124, 58, 237, 0.12);
+
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg-page);
+  background-image:
+    radial-gradient(at 0% 0%,    rgba(37, 99, 235, 0.06)  0px, transparent 45%),
+    radial-gradient(at 100% 0%,  rgba(5, 150, 105, 0.05)  0px, transparent 45%),
+    radial-gradient(at 50% 100%, rgba(124, 58, 237, 0.04) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  padding: 16px;
+  line-height: 1.4;
+}
+
+.dashboard-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.glass-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 1px 3px rgba(30, 80, 180, 0.06),
+    0 4px 16px rgba(30, 80, 180, 0.07);
+  transition: box-shadow 0.2s ease;
+}
+.glass-panel:hover {
+  box-shadow:
+    0 2px 6px rgba(30, 80, 180, 0.08),
+    0 8px 24px rgba(30, 80, 180, 0.10);
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 22px;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-header);
+}
+.dashboard-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-emerald), var(--accent-purple));
+}
+
+.header-title-group h1 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  background: var(--accent-blue-light);
+  border: 1px solid var(--accent-blue-mid);
+  color: var(--accent-blue);
+  border-radius: 14px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.header-title-group p {
+  color: #1e293b;
+  font-size: 0.82rem;
+  margin-top: 3px;
+  font-weight: 400;
+}
+
+.btn-action {
+  background: var(--accent-blue-light);
+  color: var(--accent-blue);
+  border: 1px solid var(--accent-blue-mid);
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  font-family: var(--font-sans);
+}
+.btn-action:hover {
+  background: var(--accent-blue);
+  color: #fff;
+  border-color: var(--accent-blue);
+  box-shadow: 0 4px 12px var(--accent-blue-glow);
+}
+
+/* Filter Toolbar – Global, always on top */
+.filter-toolbar {
+  padding: 8px 12px;
+  position: relative;
+  z-index: 100;
+  overflow: visible !important;
+  background: #fff;
+  border-left: 4px solid var(--accent-blue);
+}
+
+.section-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.section-title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--accent-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 8px;
+  position: relative;
+}
+
+.filter-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.filter-group.active-dropdown { z-index: 1000; }
+
+.filter-label {
+  font-size: 0.85rem;
+  font-weight: 900;
+  background: linear-gradient(90deg, #2563eb, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+  display: inline-block;
+}
+
+.dropdown-trigger {
+  background: var(--bg-input);
+  border: 1.5px solid var(--border-subtle);
+  color: var(--text-main);
+  padding: 5px 10px;
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+.dropdown-trigger:hover {
+  border-color: var(--accent-blue);
+  background: var(--accent-blue-light);
+  box-shadow: 0 0 0 3px var(--accent-blue-glow);
+}
+
+.dropdown-count-badge {
+  background: var(--accent-blue);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.68rem;
+  padding: 1px 7px;
+  border-radius: 10px;
+  min-width: 22px;
+  text-align: center;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 6px;
+  background: #fff;
+  border: 1.5px solid var(--accent-blue-mid);
+  border-radius: var(--radius-md);
+  box-shadow:
+    0 8px 32px rgba(37, 99, 235, 0.14),
+    0 25px 60px rgba(0, 0, 0, 0.10);
+  z-index: 9999;
+  padding: 10px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+.dropdown-menu.open { display: block; }
+
+.dropdown-controls {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 7px;
+  margin-bottom: 7px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--accent-blue);
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: color 0.15s;
+}
+.btn-link:hover { color: #1d4ed8; }
+
+.checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 5px 8px;
+  border-radius: var(--radius-sm);
+  transition: background 0.12s;
+}
+.checkbox-item:hover { background: var(--accent-blue-light); }
+
+.checkbox-item input[type="checkbox"] {
+  accent-color: var(--accent-blue);
+  width: 15px;
+  height: 15px;
+}
+
+/* Report Nav Bar – Sticky Scroll Navigation */
+.report-nav-bar {
+  display: flex;
+  gap: 4px;
+  padding: 8px 10px;
+  background: #fff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  box-shadow: 0 1px 4px rgba(30, 80, 180, 0.05);
+  position: sticky;
+  top: 8px;
+  scroll-behavior: smooth;
+  z-index: 80;
+}
+
+.report-nav-pill {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.18s ease;
+  font-family: var(--font-sans);
+  user-select: none;
+}
+.report-nav-pill:hover:not(.disabled) {
+  background: var(--accent-blue-light);
+  color: var(--accent-blue);
+  border-color: var(--accent-blue-mid);
+  transform: translateY(-1px);
+}
+.report-nav-pill.active {
+  background: var(--accent-blue);
+  color: #fff;
+  border-color: var(--accent-blue);
+  box-shadow: 0 3px 12px var(--accent-blue-glow);
+}
+.report-nav-pill.disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* KPI Box B1/B2 – Compact inline style */
+.kpi-excel-box {
+  padding: 8px 18px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.kpi-excel-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.kpi-excel-row:hover {
+  background: var(--accent-blue-light);
+  border-color: var(--accent-blue-mid);
+}
+
+.kpi-excel-label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Dấu phân cách giữa label và số */
+.kpi-excel-label::after {
+  content: ':';
+  color: var(--text-dim);
+  font-weight: 400;
+}
+
+.badge-tag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.badge-tag.arrived {
+  background: var(--accent-emerald-light);
+  color: var(--accent-emerald);
+  border: 1px solid var(--accent-emerald-mid);
+}
+.badge-tag.new {
+  background: var(--accent-blue-light);
+  color: var(--accent-blue);
+  border: 1px solid var(--accent-blue-mid);
+}
+
+.kpi-excel-value {
+  font-size: 1.3rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  min-width: 28px;
+  text-align: left;
+}
+.kpi-excel-value.count-b1 { color: var(--accent-emerald); }
+.kpi-excel-value.count-b2 { color: var(--accent-blue); }
+
+/* Data Table */
+.table-container-card { overflow: hidden; }
+
+.table-header-bar {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fafcff;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.table-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.table-search-input {
+  background: var(--bg-input);
+  border: 1.5px solid var(--border-subtle);
+  color: var(--text-main);
+  padding: 7px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  outline: none;
+  width: 240px;
+  font-family: var(--font-sans);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.table-search-input::placeholder { color: var(--text-dim); }
+.table-search-input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px var(--accent-blue-glow);
+  background: #fff;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  max-height: 520px;
+}
+
+.excel-table {
+  width: max-content;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.8rem;
+  font-family: var(--font-sans);
+}
+
+.excel-table th {
+  background: #f1f5fb;
+  color: var(--text-muted);
+  font-weight: 800;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 9px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border: 1px solid rgba(30, 80, 180, 0.12);
+  box-shadow: 0 2px 4px rgba(30, 80, 180, 0.06);
+  user-select: none;
+  transition: background 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+}
+.excel-table th:hover {
+  background: var(--accent-blue-light);
+  color: var(--accent-blue);
+}
+
+.sort-icon {
+  font-size: 0.72rem;
+  margin-left: 4px;
+  display: inline-block;
+  color: var(--text-dim);
+}
+
+.excel-table td {
+  padding: 6px 12px;
+  border: 1px solid var(--border-excel);
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.excel-table tbody tr { background: #fff; transition: background 0.1s ease; }
+.excel-table tbody tr:nth-child(even) { background: #fafbff; }
+.excel-table tbody tr:hover { background: var(--accent-blue-light) !important; }
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.68rem;
+}
+.status-badge.arrived {
+  background: var(--accent-emerald-light);
+  color: var(--accent-emerald);
+  border: 1px solid var(--accent-emerald-mid);
+}
+.status-badge.new {
+  background: var(--accent-blue-light);
+  color: var(--accent-blue);
+  border: 1px solid var(--accent-blue-mid);
+}
+
+.excel-table tfoot tr {
+  background: var(--accent-blue-light);
+  font-weight: 800;
+  border-top: 2px solid var(--accent-blue);
+}
+.excel-table tfoot td {
+  color: var(--accent-blue);
+  font-size: 0.85rem;
+  padding: 10px 12px;
+  border: 1px solid var(--accent-blue-mid);
+  font-family: var(--font-mono);
+}
+
+.text-right  { text-align: right; }
+.text-center { text-align: center; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* =====================================================
+   BÁO CÁO 2 — HSD STYLES
+   ===================================================== */
+
+/* Badge KPI cho BC2 */
+.badge-tag.hsd-warn {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+.badge-tag.hsd-qty {
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #93c5fd;
+}
+
+/* Màu dòng bảng theo mức cảnh báo HSD */
+.excel-table tr.hsd-critical {
+  background: #fee2e2 !important;
+}
+.excel-table tr.hsd-critical:hover {
+  background: #fecaca !important;
+}
+.excel-table tr.hsd-danger {
+  background: #ffedd5 !important;
+}
+.excel-table tr.hsd-danger:hover {
+  background: #fed7aa !important;
+}
+.excel-table tr.hsd-warn-row {
+  background: #fefce8 !important;
+}
+.excel-table tr.hsd-warn-row:hover {
+  background: #fef9c3 !important;
+}
+
+/* Badge % HSD hiển thị trong ô */
+.hsd-pct-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+.hsd-critical-badge {
+  background: #dc2626;
+  color: #fff;
+}
+.hsd-danger-badge {
+  background: #ea580c;
+  color: #fff;
+}
+.hsd-warn-row-badge {
+  background: #ca8a04;
+  color: #fff;
+}
+
+/* Badge đếm dòng BC2 */
+.hsd-badge {
+  background: #fef3c7 !important;
+  color: #92400e !important;
+  border: 1px solid #fcd34d !important;
+}
+
+/* Scroll Anchor – offset cho sticky nav */
+.scroll-anchor {
+  display: block;
+  height: 0;
+  margin-top: -72px;
+  padding-top: 72px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Section Header – tiêu đề phân cách báo cáo */
+.report-section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px;
+  background: linear-gradient(135deg, var(--accent-blue-light) 0%, #f0f7ff 100%);
+  border: 1px solid var(--accent-blue-mid);
+  border-radius: var(--radius-lg);
+  margin-bottom: 2px;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.08);
+}
+
+.report-section-number {
+  font-size: 1.6rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  color: var(--accent-blue);
+  opacity: 0.25;
+  line-height: 1;
+  min-width: 42px;
+}
+.report-section-number.bc2-num {
+  color: #d97706;
+}
+
+.report-section-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.report-section-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* report-section: luôn hiển thị, không ẩn */
+.report-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* BC4 Charts Grid */
+.charts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.chart-card { padding: 16px; display: flex; flex-direction: column; }
+.chart-large { grid-column: span 2; min-height: 300px; }
+.chart-header { font-size: 0.9rem; font-weight: 600; color: var(--primary); margin-bottom: 12px; text-align: center; }
+.chart-canvas-wrapper { position: relative; height: 240px; width: 100%; }
+.chart-canvas-tall { height: 280px; }
+@media (max-width: 1200px) { .charts-grid { grid-template-columns: repeat(2, 1fr); } .chart-large { grid-column: span 2; } }
+@media (max-width: 768px) { .charts-grid { grid-template-columns: 1fr; } .chart-large { grid-column: span 1; } }
+
+/* BC4 compact date filter */
+#group-ngay-bc4 .dropdown-trigger { padding: 6px 10px; font-size: 0.8rem; }
+#group-ngay-bc4 .dropdown-count-badge { font-size: 0.7rem; padding: 1px 5px; min-width: 18px; }
+#group-ngay-bc4 .dropdown-menu { min-width: 160px; max-width: 200px; }
+
+/* BC6 Highlighted elements */
+#bc6-thead-row th {
+    color: red !important;
+    font-weight: bold !important;
+}
+
+#bc6-month-filter {
+    color: red !important;
+    font-weight: bold !important;
+}

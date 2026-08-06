@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Báo Cáo Cận Date</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- HEADER CHÍNH -->
+  <header class="app-header">
+    <div class="logo-area">
+      <h1>SABECO DASHBOARD</h1>
+      <span class="version-badge">CẬN DATE</span>
+    </div>
+    <div class="nav-links">
+      <a href="#" class="nav-btn active">Báo Cáo</a>
+      <a href="#" class="nav-btn">Cấu Hình</a>
+      <a href="#" class="nav-btn">Hệ Thống</a>
+    </div>
+    <div class="user-profile">
+      <div class="avatar">HT</div>
+      <div class="user-info">
+        <span class="user-name">Hoàng Tiến</span>
+        <span class="user-role">Administrator</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- THANH CÔNG CỤ BỘ LỌC CHUNG -->
+  <div class="filter-toolbar">
+    <div class="filter-header">
+      <div class="filter-title">
+        <span class="icon">🔍</span>
+        <h3>BỘ LỌC CHUNG</h3>
+      </div>
+      <div class="filter-actions">
+        <button id="btnExportExcel" class="btn btn-outline" style="color: #10b981; border-color: #10b981; margin-right: 10px;" title="Tải xuống dữ liệu dưới dạng Excel">
+          <span class="icon">📥</span> Xuất Excel
+        </button>
+        <button id="btnResetFilters" class="btn btn-outline" title="Xóa tất cả bộ lọc">
+          <span class="icon">↺</span> Thiết lập lại
+        </button>
+      </div>
+    </div>
+    
+    <div class="filter-grid">
+      <!-- Bộ lọc 1: Mã Kho -->
+      <div class="filter-group" id="group-kho">
+        <label class="filter-label">MÃ KHO <span class="badge" id="badge-kho">0</span></label>
+        <button class="dropdown-trigger" id="btn-kho" onclick="toggleDropdown('kho')">
+          <span class="trigger-text">Tất cả kho</span>
+          <span class="trigger-icon">▼</span>
+        </button>
+        <div class="dropdown-menu" id="dropdown-kho">
+          <div class="dropdown-search">
+            <input type="text" placeholder="Tìm kho..." onkeyup="filterDropdownList('kho', this.value)">
+          </div>
+          <div class="dropdown-actions">
+            <button class="btn-text" onclick="selectAll('kho')">Chọn tất cả</button>
+            <button class="btn-text" onclick="clearAll('kho')">Bỏ chọn</button>
+          </div>
+          <div class="dropdown-list" id="list-kho">
+            <!-- Render từ JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Bộ lọc 2: Nhóm Hàng -->
+      <div class="filter-group" id="group-nhomhang">
+        <label class="filter-label">NHÓM HÀNG <span class="badge" id="badge-nhomhang">0</span></label>
+        <button class="dropdown-trigger" id="btn-nhomhang" onclick="toggleDropdown('nhomhang')">
+          <span class="trigger-text">Tất cả nhóm</span>
+          <span class="trigger-icon">▼</span>
+        </button>
+        <div class="dropdown-menu" id="dropdown-nhomhang">
+          <div class="dropdown-search">
+            <input type="text" placeholder="Tìm nhóm hàng..." onkeyup="filterDropdownList('nhomhang', this.value)">
+          </div>
+          <div class="dropdown-actions">
+            <button class="btn-text" onclick="selectAll('nhomhang')">Chọn tất cả</button>
+            <button class="btn-text" onclick="clearAll('nhomhang')">Bỏ chọn</button>
+          </div>
+          <div class="dropdown-list" id="list-nhomhang">
+            <!-- Render từ JS -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bộ lọc 3: Trạng thái HSD -->
+      <div class="filter-group" id="group-trangthai">
+        <label class="filter-label">TRẠNG THÁI HSD <span class="badge" id="badge-trangthai">0</span></label>
+        <button class="dropdown-trigger" id="btn-trangthai" onclick="toggleDropdown('trangthai')">
+          <span class="trigger-text">Tất cả trạng thái</span>
+          <span class="trigger-icon">▼</span>
+        </button>
+        <div class="dropdown-menu" id="dropdown-trangthai">
+          <div class="dropdown-actions">
+            <button class="btn-text" onclick="selectAll('trangthai')">Chọn tất cả</button>
+            <button class="btn-text" onclick="clearAll('trangthai')">Bỏ chọn</button>
+          </div>
+          <div class="dropdown-list" id="list-trangthai">
+            <!-- Render từ JS -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MAIN DASHBOARD KHOẢNG TRỐNG -->
+  <main class="dashboard-container">
+    <!-- THANH TABS -->
+    <div class="report-tabs-bar">
+      <a class="report-nav-pill active" id="pill-bc-candate" href="#" onclick="switchReport('bc-candate'); return false;">⚠️ Báo Cáo: Hàng Cận Date & Hết Hạn</a>
+    </div>
+
+    <!-- KHU VỰC BÁO CÁO CẬN DATE -->
+    <div class="report-section" id="report-bc-candate" style="display:block;">
+      <div class="section-title-bar">
+        <h2>Tổng quan Hạn Sử Dụng</h2>
+        <span class="update-time" id="last-update">Cập nhật: --:--</span>
+      </div>
+
+
+
+      <!-- BẢNG DỮ LIỆU EXCEL STYLE -->
+      <div class="table-container">
+        <table class="excel-table" id="table-candate">
+          <thead>
+            <tr>
+              <th onclick="sortTable('table-candate', 0)" style="width: 80px;">MÃ KHO ↕</th>
+              <th onclick="sortTable('table-candate', 1)" style="width: 100px;">MÃ HÀNG ↕</th>
+              <th onclick="sortTable('table-candate', 2)">TÊN HÀNG ↕</th>
+              <th onclick="sortTable('table-candate', 3)" style="width: 80px;">NHÓM ↕</th>
+              <th onclick="sortTable('table-candate', 4)" style="width: 100px;">SỐ LÔ ↕</th>
+              <th onclick="sortTable('table-candate', 5)" style="width: 90px;">NSX ↕</th>
+              <th onclick="sortTable('table-candate', 6)" style="width: 90px;">HSD ↕</th>
+              <th onclick="sortTable('table-candate', 7)" style="width: 80px;" class="text-right">SỐ NGÀY ↕</th>
+              <th onclick="sortTable('table-candate', 8)" style="width: 80px;" class="text-right">QTY (PL) ↕</th>
+              <th onclick="sortTable('table-candate', 9)" style="width: 140px;">TÌNH TRẠNG ↕</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-candate">
+            <!-- Render từ JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- DATA & LOGIC SCRIPTS -->
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

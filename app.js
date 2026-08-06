@@ -47,7 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('btnExportExcel').addEventListener('click', exportToExcel);
     if (typeof DATA_UPDATED_TIME !== 'undefined') {
-        document.getElementById('last-update').innerText = `Cập nhật: ${DATA_UPDATED_TIME}`;
+        let updateText = `Cập nhật: ${DATA_UPDATED_TIME}`;
+        if (typeof DATA_RUN_ID !== 'undefined') {
+            updateText += ` (Lần chạy: #${DATA_RUN_ID})`;
+        }
+        document.getElementById('last-update').innerText = updateText;
     } else {
         const now = new Date();
         document.getElementById('last-update').innerText = `Cập nhật: ${now.toLocaleTimeString('vi-VN')} ${now.toLocaleDateString('vi-VN')} (Local)`;

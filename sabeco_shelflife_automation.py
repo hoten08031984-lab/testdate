@@ -246,8 +246,11 @@ def main():
     try:
         data_js_path = os.path.join(SCRIPT_DIR, "data.js")
         now_str = datetime.datetime.now().strftime('%H:%M:%S %d/%m/%Y')
+        import random
+        random_id = random.randint(1000, 9999)
         with open(data_js_path, "w", encoding="utf-8") as f:
             f.write(f"const DATA_UPDATED_TIME = '{now_str}';\n")
+            f.write(f"const DATA_RUN_ID = '{random_id}';\n")
             f.write("const DATA_CANDATE = ")
             json.dump(mapped_data, f, ensure_ascii=False, indent=2)
             f.write(";\n")

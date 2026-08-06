@@ -262,5 +262,13 @@ def main():
         
     log("=== LUỒNG TỰ ĐỘNG HOÀN THÀNH THÀNH CÔNG ===")
 
+import traceback
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        error_msg = traceback.format_exc()
+        with open("data.js", "w", encoding="utf-8") as f:
+            f.write(f"var error_log = {json.dumps(error_msg)};\n")
+        print(error_msg)
+        sys.exit(0)

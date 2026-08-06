@@ -1,4 +1,4 @@
-nô ame: Cập nhật Báo cáo Cận Date
+name: Cập nhật Báo cáo Cận Date
 on:
   schedule:
     - cron: '*/3 * * * *'

@@ -241,7 +241,7 @@ body {
   box-shadow: 0 0 0 3px var(--accent-blue-glow);
 }
 
-.dropdown-count-badge {
+.dropdown-count-badge, .badge {
   background: var(--accent-blue);
   color: #fff;
   font-weight: 800;
@@ -250,6 +250,7 @@ body {
   border-radius: 10px;
   min-width: 22px;
   text-align: center;
+  display: inline-block;
 }
 
 .dropdown-menu {
@@ -441,7 +442,7 @@ body {
 .kpi-excel-value.count-b2 { color: var(--accent-blue); }
 
 /* Data Table */
-.table-container-card { overflow: hidden; }
+.table-container { overflow: auto; background: #fff; border-radius: var(--radius-lg); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
 
 .table-header-bar {
   padding: 12px 18px;

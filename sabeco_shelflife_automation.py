@@ -19,7 +19,7 @@ TARGET_SHEET_NAME = "data"
 
 # Tài khoản đăng nhập Sabeco Portal
 USERNAME = "ntb-hoangtien"
-PASSWORD = "hehuha170714"
+PASSWORD = "hehuha170714@"
 
 # Bảng tra cứu tên kho từ mã kho
 WHSE_NAME_MAP = {

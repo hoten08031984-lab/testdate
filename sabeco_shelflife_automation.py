@@ -3,6 +3,9 @@ import sys
 import json
 import traceback
 
+# Cài đặt thủ công thư viện thiếu trên GitHub Actions (Python 3.10)
+os.system(f"{sys.executable} -m pip install typing_extensions")
+
 try:
     from curl_cffi import requests
     import pandas as pd

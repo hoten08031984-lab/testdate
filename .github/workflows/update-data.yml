@@ -16,7 +16,7 @@ jobs:
     - name: Cài đặt thư viện
       run: |
         python -m pip install --upgrade pip
-        pip install requests pandas openpyxl
+        pip install curl_cffi pandas openpyxl
     - name: Chạy Script lấy dữ liệu Cận Date
       run: python sabeco_shelflife_automation.py
     - name: Commit và Push data.js mới lên GitHub
